@@ -43,5 +43,8 @@ class CacheHelper {
 
          return await sharedPreferences.setDouble(key, value);
       }
+   static dynamic destroy()  async{
+    await sharedPreferences.clear();
+   }
 
 }

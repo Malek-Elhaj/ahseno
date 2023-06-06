@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -142,9 +143,15 @@ class LoginCubit extends Cubit<LoginStates>{
                                                              for (var element in userdoc) {
 
                                                                print( element.get('uId'));
+                                                               // CacheHelper.saveData(key: "name", value: element.get('name'));
+                                                               // CacheHelper.saveData(key: "phone",value: element.get('phone'));
+                                                               // CacheHelper.saveData(key: "desc",value: element.get('desc'));
+                                                               // CacheHelper.saveData(key: "email",value: element.get('email'));
+                                                               // CacheHelper.saveData(key: "uId", value: element.get('uId'));
                                                                print(value.user!.phoneNumber);
                                                                if( element.get('uId').toString().contains(value.user!.uid))
                                                                {
+
                                                                  emit(LoginSuccessState(FirebaseAuth.instance.currentUser!.uid));
                                                                  break;
 

@@ -4,12 +4,14 @@ class UserModel {
    late String email;
    late String phone;
    late String uId;
+   late String desc;
 
   UserModel(
      this.name,
      this.email,
      this.phone,
-     this.uId
+     this.uId,
+      this.desc
    );
 
 
@@ -19,6 +21,7 @@ class UserModel {
        email=json!["email"]!;
        phone=json!["phone"]!;
        uId=json!["uId"]!;
+       desc=json!["desc"]!;
   }
 
    Map<String,dynamic> toMap(){
@@ -26,7 +29,8 @@ class UserModel {
       'name':name,
       'email':email,
       'phone':phone,
-      'uId':uId
+      'uId':uId,
+      'desc':desc
     };
    }
 

@@ -24,6 +24,7 @@ class SignupCubit extends Cubit<SignupStates>{
             required String name,
             required String email,
             required String number,
+            required String desc,
             context
         }
       ){
@@ -100,7 +101,8 @@ class SignupCubit extends Cubit<SignupStates>{
                                                  name: name,
                                                  email: email,
                                                  number: number,
-                                                 uId: value.user!.uid
+                                                 uId: value.user!.uid,
+                                               desc: desc,
                                              ),
                                                  emit(CreateUserSuccessState(value.user!.uid))
                                            }
@@ -149,7 +151,8 @@ class SignupCubit extends Cubit<SignupStates>{
     required String name,
     required String email,
     required String number,
-    required String uId
+    required String uId,
+    required String desc
     }){
     emit(SignupLoadingState());
 
@@ -157,7 +160,8 @@ class SignupCubit extends Cubit<SignupStates>{
         name,
         email,
         number,
-        uId
+        uId,
+      desc,
     );
     FirebaseFirestore.instance
         .collection('users')

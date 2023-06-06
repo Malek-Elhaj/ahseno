@@ -186,7 +186,8 @@ class AccountInfoScreen extends StatelessWidget {
                                                     cubit.updateUserData(
                                                         nameController.text,
                                                         emailController.text,
-                                                        model.phone
+                                                        model.phone,
+                                                      model.desc
                                                     );
                                                   },
                                                   ButtonText: "انهاء العملية التعديل"

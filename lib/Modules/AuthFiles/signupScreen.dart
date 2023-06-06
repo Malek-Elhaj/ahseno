@@ -348,6 +348,7 @@ class SignUpScreen extends StatelessWidget {
                                             name: nameController.text,
                                             email: emailController.text,
                                             number: numberController.text,
+                                            desc: "user",
                                             context: context
                                         );
                                       }else

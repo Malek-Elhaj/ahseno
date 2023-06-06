@@ -10,9 +10,9 @@ class CasesInProcessScreen extends StatefulWidget {
   @override
   State<CasesInProcessScreen> createState() => _CasesInProcessScreenState();
 }
-
+List<Map<String, dynamic>> inprogress=[];
 class _CasesInProcessScreenState extends State<CasesInProcessScreen> {
-  List<Map<String, dynamic>> inprogress=[];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,7 +27,7 @@ class _CasesInProcessScreenState extends State<CasesInProcessScreen> {
         appBar: defaultAppBar(title: "الحالات قيد المراجعة",context: context ),
         body: BlocBuilder<SectionsCubit, SectionsState>(
   builder: (context, state) {
-    if(state is CasesLoaded && inprogress.length >0){
+    if(state is CasesLoaded && (state).inprogress.length >0){
       inprogress = (state).inprogress;
 
     return ListView.separated(

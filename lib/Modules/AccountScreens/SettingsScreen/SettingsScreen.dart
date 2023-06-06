@@ -42,9 +42,10 @@ class SettingsScreen extends StatelessWidget {
                 body:Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
+
                     children: [
                       SizedBox(
-                        height: 600,
+                        height: 400,
                         child: ListView.separated(
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context,index){
@@ -84,7 +85,7 @@ class SettingsScreen extends StatelessWidget {
                             itemCount: settingsItems.length
                         ),
                       ),
-                      const Spacer(),
+                     // const Spacer(),
                       DefaultButton(
                         Function: (){
                            cubit.signOut();

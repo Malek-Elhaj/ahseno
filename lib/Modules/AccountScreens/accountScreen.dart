@@ -21,9 +21,22 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../Shared/constants.dart';
 import 'Administrator Screens/CreateAccount.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<Cubit_Class>(context).getUserData();
+    //cubit.getUserData();
+  }
+  //
   @override
   Widget build(BuildContext context) {
 
@@ -123,7 +136,7 @@ class AccountScreen extends StatelessWidget {
 
                 // Adimn of the sections
                 Visibility(
-                  visible: true,
+                  visible: desc != "user" && desc != null ,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -380,7 +393,7 @@ class AccountScreen extends StatelessWidget {
 
                 // Account login
                 Visibility(
-                  visible:  uId == null,
+                  visible:  uId == "user",
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

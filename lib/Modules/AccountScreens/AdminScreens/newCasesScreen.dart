@@ -63,8 +63,8 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
         appBar: defaultAppBar(title: "طلبات الحالات الجديدة",context: context),
         body: BlocBuilder<CasesCubit, CasesState>(
           builder: (context, state) {
-    if(state is ManageCases && request.length > 0) {
-      request = state.requestes;
+    if(state is ManageCases && (state).requestes.length > 0) {
+      request = (state).requestes;
       return ListView.separated(
           itemBuilder: (context, index) =>
               defaultCardItem(

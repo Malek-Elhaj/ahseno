@@ -111,7 +111,7 @@ class Cubit_Class extends Cubit<State_Class> {
     emit(ChangeVisiblity());
   }
 
-  UserModel user = UserModel("", "", "", "");
+  UserModel user =UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
 
   Future<void> getUserData() async {
 
@@ -130,6 +130,11 @@ class Cubit_Class extends Cubit<State_Class> {
               emit(DataSuccessState());
             }
         );
+        CacheHelper.saveData(key: "name", value: user.name);
+        CacheHelper.saveData(key: "phone", value: user.phone);
+        CacheHelper.saveData(key: "desc", value: user.desc);
+        CacheHelper.saveData(key: "email", value: user.email);
+        CacheHelper.saveData(key: "uId", value: user.uId);
       }
 
 
@@ -151,9 +156,9 @@ class Cubit_Class extends Cubit<State_Class> {
 
   }
 
-  void updateUserData(String name,String email,String phone){
+  void updateUserData(String name,String email,String phone,String desc){
 
-    user=UserModel(name, email, phone, uId);
+    user=UserModel(name, email, phone, uId,desc);
     emit(UpdateDataLoadingState());
     FirebaseFirestore.instance.
     collection('users')
@@ -171,11 +176,18 @@ class Cubit_Class extends Cubit<State_Class> {
   void deleteUser(){
 
   }
-  void signOut(){
+  void signOut()async{
       {
+        CacheHelper.saveData(key: "name", value: null);
+        CacheHelper.saveData(key: "phone", value: null);
+        CacheHelper.saveData(key: "desc", value: null);
+        CacheHelper.saveData(key: "email", value: null);
+        CacheHelper.saveData(key: "uId", value: null);
+        CacheHelper.destroy();
         FirebaseAuth.instance.signOut().then(
                 (value) {
                    uId=null;
+
                    emit(SignoutAccountSuccessState());
             }
         ).catchError((error){
