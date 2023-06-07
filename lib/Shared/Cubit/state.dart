@@ -1,5 +1,6 @@
 
 
+import 'package:designapp/Services/models/UserModel/UserModel.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class State_Class {}
@@ -16,7 +17,10 @@ class ChangeVisiblity extends State_Class{}
 
 //FireBase States
 
-class DataSuccessState extends State_Class{}
+class DataSuccessState extends State_Class{
+ final UserModel user;
+ DataSuccessState(this.user);
+}
 
 class DataFaliedState extends State_Class{
   final String error;

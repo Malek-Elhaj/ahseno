@@ -10,6 +10,8 @@ import 'package:designapp/Modules/AccountScreens/AdminScreens/managingCases.dart
 import 'package:designapp/Modules/AccountScreens/AdminScreens/newCasesScreen.dart';
 import 'package:designapp/Modules/AccountScreens/SettingsScreen/SettingsScreen.dart';
 import 'package:designapp/Modules/AuthFiles/Login_Design.dart';
+import 'package:designapp/Services/models/UserModel/UserModel.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Cubit/cubit.dart';
 import 'package:designapp/Shared/Cubit/state.dart';
@@ -27,7 +29,7 @@ class AccountScreen extends StatefulWidget {
   @override
   State<AccountScreen> createState() => _AccountScreenState();
 }
-
+UserModel model = UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
 class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
@@ -35,22 +37,17 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     BlocProvider.of<Cubit_Class>(context).getUserData();
     //cubit.getUserData();
+    //model = BlocProvider.of<Cubit_Class>(context).user;
+    model = UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
   }
   //
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
-    return BlocConsumer<Cubit_Class,State_Class>(
-      listener: (context,index){},
-      builder: (context,index){
-
-        Cubit_Class cubit=Cubit_Class.get(context);
-
-        var model =  cubit.user;
+    return BlocBuilder<Cubit_Class,State_Class>(
+      builder:(context,state){
+        // if(state is DataSuccessState){
+        //   model = (state).user;
+        // }
 
         return Scaffold(
           appBar: defaultAppBar(
@@ -393,7 +390,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // Account login
                 Visibility(
-                  visible:  uId == "user",
+                  visible:  model.desc == "user",
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

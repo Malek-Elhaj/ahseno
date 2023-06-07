@@ -127,7 +127,7 @@ class Cubit_Class extends Cubit<State_Class> {
                 (event) {
                   print(event.data());
               user = UserModel.fromJson(event.data());
-              emit(DataSuccessState());
+              emit(DataSuccessState(user));
             }
         );
         CacheHelper.saveData(key: "name", value: user.name);
