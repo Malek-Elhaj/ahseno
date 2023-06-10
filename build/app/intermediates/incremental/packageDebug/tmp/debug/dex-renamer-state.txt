@@ -1,4 +1,4 @@
-#Wed Jun 07 18:14:31 EET 2023
+#Sat Jun 10 15:50:54 EET 2023
 base.2=E\:\\android projects\\flutter\\ahseno\\Ahseno\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes3.dex
 path.2=classes3.dex
 base.1=E\:\\android projects\\flutter\\ahseno\\Ahseno\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex

@@ -136,7 +136,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // Adimn of the sections
                 Visibility(
-                  visible: model.desc == "admin" || model.desc == "projects" ,
+                  visible: model.desc == "madion" || model.desc == "projects"|| model.desc == "maona" ,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
