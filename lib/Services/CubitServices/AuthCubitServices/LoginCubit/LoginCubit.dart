@@ -147,13 +147,14 @@ class LoginCubit extends Cubit<LoginStates>{
                                                                print(value.user!.phoneNumber);
                                                                if( element.get('uId').toString().contains(value.user!.uid))
                                                                {
+                                                                 CacheHelper.destroy();
                                                                  CacheHelper.saveData(key: "name", value: element.get('name'));
                                                                  CacheHelper.saveData(key: "phone",value: element.get('phone'));
                                                                  CacheHelper.saveData(key: "desc",value: element.get('desc'));
                                                                  CacheHelper.saveData(key: "email",value: element.get('email'));
                                                                  CacheHelper.saveData(key: "uId", value: element.get('uId'));
-                                                                 print( CacheHelper.getData(key: "name"));
-                                                                 emit(LoginSuccessState(FirebaseAuth.instance.currentUser!.uid));
+                                                                 print( CacheHelper.getData(key: "desc"));
+                                                                 emit(LoginSuccessState(FirebaseAuth.instance.currentUser!.uid, CacheHelper.getData(key: "desc")));
                                                                  break;
 
                                                                }else if( element.get('phone') != value.user!.phoneNumber)

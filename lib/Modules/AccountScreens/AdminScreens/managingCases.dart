@@ -1,5 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:designapp/Modules/sectionsScreens/describtionScreen.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +21,14 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
   @override
   void initState() {
     // TODO: implement initState
+
     BlocProvider.of<SectionsCubit>(context).getAll();
   }
   @override
   Widget build(BuildContext context) {
-    var rejectionController=TextEditingController();
+    var newTitle=TextEditingController();
+    var details=TextEditingController();
+    var goal=TextEditingController();
 
     final snackBarFailed = SnackBar(
       /// need to set following properties for best effect of awesome_snackbar_content
@@ -62,11 +67,21 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
       child: Scaffold(
         appBar: defaultAppBar(title: "أدارة الحالات",context: context),
         body: BlocBuilder<SectionsCubit, SectionsState>(
-  builder: (context, state) {
+    builder: (context, state) {
     if(state is SectionsLoaded) {
-      all+=(state).first;
-      all+=(state).second;
-      all+=(state).last;
+      all.clear();
+      switch(CacheHelper.getData(key: "desc")){
+        case "projects":
+          all+= (state).second;
+          break;
+        case "madion":
+          all+= (state).last;
+          break;
+        case "maona":
+          all+= (state).first;
+          break;
+      }
+      if(all.length>0){
       return ListView.separated(
           itemBuilder: (context, index) =>
               defaultCardItem(
@@ -81,6 +96,11 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                   percentvalue: (all[index]["total"]/all[index]["req"]*100).toStringAsFixed(2),
                   percentcolor: "#45C4B0",
                   function: () {
+                    var data = all[index];
+                    newTitle.text=data["title"];
+                    goal.text=data["req"].toString();
+                    details.text=data["description"];
+                    print("${data["id"]}");
                     showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
@@ -112,7 +132,8 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                           ),
                                           DefaultTextField(
                                               label: "العنوان الجديد",
-                                              textcontroller: rejectionController,
+                                              textcontroller: newTitle,
+                                              //initialvalue: data["title"],
                                               function: (value) {
                                                 if (value!.isEmpty) {
                                                   return "رجاء ادخال العنوان";
@@ -121,8 +142,8 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                               }
                                           ),
                                           DefaultTextField(
-                                              label: "تفاضيل الحالة",
-                                              textcontroller: rejectionController,
+                                              label: "تفاصيل الحالة",
+                                              textcontroller: details,
                                               function: (value) {
                                                 if (value!.isEmpty) {
                                                   return "رجاء ادخال التفاصيل";
@@ -132,7 +153,8 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                           ),
                                           DefaultTextField(
                                               label: "الهدف المطلوب",
-                                              textcontroller: rejectionController,
+                                              textcontroller: goal,
+                                             // initialvalue: data["req"],
                                               function: (value) {
                                                 if (value!.isEmpty) {
                                                   return "رجاء ادخال سبب الرفض";
@@ -142,7 +164,19 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                           ),
                                           const SizedBox(height: 10,),
                                           DefaultButton(
-                                              Function: () {
+                                              Function: ()async {
+                                                print(all[index]["id"]);
+                                                await FirebaseFirestore.instance.collection(CacheHelper.getData(key: "desc")).doc(data["id"]).set(
+                                                    {
+                                                      "title": newTitle.text,
+                                                      "description": details.text,
+                                                      "req": num.parse(goal.text),
+                                                      "mostafid": data["mostafid"],
+                                                      "location": data["location"],
+                                                      "date":data["date"],
+                                                      "total":data["total"],
+                                                      "uId":data["uId"]
+                                                    });
                                                 if (formKey.currentState!
                                                     .validate()) {
                                                   Navigator.pop(context);
@@ -158,6 +192,9 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                                     ..showSnackBar(
                                                         snackBarFailed);
                                                 }
+                                                setState(() {
+                                                  BlocProvider.of<SectionsCubit>(context).getAll();
+                                                });
                                               },
                                               ButtonText: "انهاء العملية"
                                           )
@@ -175,8 +212,12 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                         )
                     );
                   },
-                  function2: () {
+                  function2: () async{
                     if (true) {
+                      await FirebaseFirestore.instance.collection(CacheHelper.getData(key: "desc")).doc(all[index]["id"]).delete();
+                      setState(() {
+                        BlocProvider.of<SectionsCubit>(context).getAll();
+                      });
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(snackBarDone);
@@ -195,11 +236,12 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 10,),
           itemCount: all.length
-      );
+      );}
+      else{return Center(child: Text("لا توجد حالات"));}
     }
     else
       {
-        return Center(child: Text("====="));
+        return Center(child: Text("لا توجد حالات"));
       }
   },
 ),

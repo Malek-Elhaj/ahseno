@@ -13,7 +13,7 @@ import '../../../Shared/Style.dart';
 import '../../AuthFiles/Login_Design.dart';
 
 const List<String> list = <String>['قسم المشاريع الخيرية', 'قسم المديونين','قسم المؤونة', 'قسم الدم'];
-
+String val="projects";
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -145,6 +145,17 @@ class _CreateAccountState extends State<CreateAccount> {
                                   }).toList(),
 
                                   onChanged: (String? value) {
+                                    switch(value){
+                                      case "قسم المؤونة":
+                                        val = "maona";
+                                        break;
+                                      case "قسم المديونين":
+                                        val = "madion";
+                                        break;
+                                      case "قسم المشاريع الخيرية":
+                                        val = "projects";
+                                        break;
+                                    }
                                     setState(() {
                                       dropdownValue = value!;
                                     }
@@ -241,7 +252,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                           name: nameController.text,
                                           email: emailController.text,
                                           number: numberController.text,
-                                          Section: dropdownValue,
+                                          desc: val,
                                           context: context,  );
                                     }
                                   },

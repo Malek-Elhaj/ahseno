@@ -1,18 +1,34 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:designapp/Modules/sectionsScreens/describtionScreen.dart';
+import 'package:designapp/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewCasesUserScreen extends StatelessWidget {
+class NewCasesUserScreen extends StatefulWidget {
   const NewCasesUserScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<NewCasesUserScreen> createState() => _NewCasesUserScreenState();
+}
 
-    var rejectionController=TextEditingController();
+List<Map<String, dynamic>> myCases = [];
+
+class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<SectionsCubit>(context).getAll();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var rejectionController = TextEditingController();
 
     final snackBarFailed = SnackBar(
+
       /// need to set following properties for best effect of awesome_snackbar_content
       elevation: 0,
       behavior: SnackBarBehavior.floating,
@@ -27,6 +43,7 @@ class NewCasesUserScreen extends StatelessWidget {
       ),
     );
     final snackBarDone = SnackBar(
+
       /// need to set following properties for best effect of awesome_snackbar_content
       elevation: 0,
       behavior: SnackBarBehavior.floating,
@@ -42,99 +59,106 @@ class NewCasesUserScreen extends StatelessWidget {
     );
 
 
+    return BlocBuilder<SectionsCubit, SectionsState>(
+      builder: (context, state) {
+        if(state is SectionsLoaded){
+          myCases.clear();
+          myCases+= state.first;
+          myCases+= state.second;
+          myCases+= state.last;
+        }
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            appBar: defaultAppBar(title: "الحالات المضافة", context: context),
+            body: ListView.separated(
+                itemBuilder: (context, index) =>
+                    defaultCardItem(
+                        image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
+                        itemTitle: "${myCases[index]["title"]}",
+                        leftnumber: "${myCases[index]["req"]}",
+                        textButton1: "تقديم طلب تعديل",
+                        textButton2: "تقديم طلب حذف",
+                        buttonColor: "#13678A",
+                        buttonColor2: "#ff5c33",
+                        percent: 0.0,
+                        percentvalue: "30",
+                        percentcolor: "#45C4B0",
+                        function: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) =>
+                                  Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: SizedBox(
+                                      height: 250,
+                                      width: double.infinity,
+                                      child: Form(
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: defaultAppBar(title: "الحالات المضافة",context: context),
-        body: ListView.separated(
-            itemBuilder: (context,index)=> defaultCardItem(
-                image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
-                itemTitle: " صيانة اكادمية تحفيط قران",
-                leftnumber: "192,493",
-                textButton1: "تقديم طلب تعديل",
-                textButton2: "تقديم طلب حذف",
-                buttonColor: "#13678A",
-                buttonColor2: "#ff5c33",
-                percent: 0.3,
-                percentvalue: "30",
-                percentcolor: "#45C4B0",
-                function: ()
-                {
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(height: 15,),
+                                            Text(
+                                              "طلب التعديل",
+                                              style: TextStyle(
+                                                  color: AppColors.CustomGrey,
+                                                  fontSize: 18
+                                              ),
+                                            ),
+                                            DefaultTextField(
+                                                label: "أكتب الشي المراد تعديله",
+                                                textcontroller: rejectionController,
+                                                function: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return "رجاء ادخال سبب التعديل";
+                                                  }
+                                                }
+                                            ),
+                                            const SizedBox(height: 10,),
+                                            DefaultButton(
+                                                Function: () {
 
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context)=>Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: SizedBox(
-                          height: 250,
-                          width: double.infinity,
-                          child: Form(
-
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 15,),
-                                Text(
-                                  "طلب التعديل",
-                                  style: TextStyle(
-                                      color: AppColors.CustomGrey,
-                                      fontSize: 18
+                                                },
+                                                ButtonText: "انهاء العملية"
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                DefaultTextField(
-                                    label: "أكتب الشي المراد تعديله",
-                                    textcontroller: rejectionController,
-                                    function: (value){
-                                      if(value!.isEmpty){
-                                        return "رجاء ادخال سبب التعديل";
-                                      }
+                              shape: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(16)),
+                                  borderSide: BorderSide(color: Colors
+                                      .transparent)
+                              )
+                          );
+                        },
+                        function2: () {
+                          if (true) {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(snackBarDone);
+                          } else {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(snackBarFailed);
+                          }
+                        },
+                        ontab: () {
+                          // NavgatetoPage(context: context, page: const DescribtionScreen());
+                        },
+                        onlongpress: () {
 
-                                    }
-                                ),
-                                const SizedBox(height: 10,),
-                                DefaultButton(
-                                    Function: (){
-
-                                    },
-                                    ButtonText: "انهاء العملية"
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      shape: const OutlineInputBorder(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                          borderSide: BorderSide(color: Colors.transparent)
-                      )
-                  );
-
-
-                },
-                function2: (){
-                  if(true)
-                  {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(snackBarDone);
-                  }else
-                  {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(snackBarFailed);
-                  }
-                },
-                ontab: () {
-                  // NavgatetoPage(context: context, page: const DescribtionScreen());
-                },
-                onlongpress: () {
-
-                }
+                        }
+                    ),
+                separatorBuilder: (context, index) =>
+                const SizedBox(height: 10,),
+                itemCount: myCases.length
             ),
-            separatorBuilder: (context,index)=>const SizedBox(height: 10,),
-            itemCount: 10
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

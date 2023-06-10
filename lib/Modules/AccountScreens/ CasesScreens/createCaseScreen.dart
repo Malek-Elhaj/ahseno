@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _CreateCaseScreenState extends State<CreateCaseScreen> {
   Widget build(BuildContext context) {
 
    // var formKey=GlobalKey<FormState>();
-    
+   //  print(CacheHelper.getData(key: "uId"));
     List<String> images=[
       "Assets/images/GoodShop/clothes.jpg",
       "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
@@ -241,7 +242,8 @@ class _CreateCaseScreenState extends State<CreateCaseScreen> {
                               "date":ts,
                               "total":0,
                             "section": val,
-                            "status":"0"};
+                            "status":"0",
+                              "uId":CacheHelper.getData(key: "uId")};
                             await FirebaseFirestore.instance.collection("cases").add(data);
                           },
                           ButtonText: "إضافة الحالة"

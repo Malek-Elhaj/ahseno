@@ -10,6 +10,7 @@ import 'package:designapp/Modules/AccountScreens/AdminScreens/managingCases.dart
 import 'package:designapp/Modules/AccountScreens/AdminScreens/newCasesScreen.dart';
 import 'package:designapp/Modules/AccountScreens/SettingsScreen/SettingsScreen.dart';
 import 'package:designapp/Modules/AuthFiles/Login_Design.dart';
+import 'package:designapp/Services/CubitServices/AuthCubitServices/LoginCubit/LoginStates.dart';
 import 'package:designapp/Services/models/UserModel/UserModel.dart';
 import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
@@ -29,7 +30,7 @@ class AccountScreen extends StatefulWidget {
   @override
   State<AccountScreen> createState() => _AccountScreenState();
 }
-UserModel model = UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
+UserModel model = UserModel("","","","","");
 class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
@@ -38,17 +39,19 @@ class _AccountScreenState extends State<AccountScreen> {
     BlocProvider.of<Cubit_Class>(context).getUserData();
     //cubit.getUserData();
     //model = BlocProvider.of<Cubit_Class>(context).user;
-    model = UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
+    //model =UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
   }
   //
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<Cubit_Class,State_Class>(
       builder:(context,state){
-        // if(state is DataSuccessState){
-        //   model = (state).user;
-        // }
-
+        if(state is DataSuccessState){
+          model = state.user;
+        }
+        print( CacheHelper.getData(key: "desc"));
+        print( "${model.desc} aa");
+        model = UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
         return Scaffold(
           appBar: defaultAppBar(
               title: "الملف الشخصي",
@@ -133,7 +136,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // Adimn of the sections
                 Visibility(
-                  visible: desc != "user" && desc != null ,
+                  visible: model.desc == "admin" || model.desc == "projects" ,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

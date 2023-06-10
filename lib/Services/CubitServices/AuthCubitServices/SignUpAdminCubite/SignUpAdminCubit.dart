@@ -24,7 +24,7 @@ class SignupAdminCubit extends Cubit<SignupAdminStates>{
         required String name,
         required String email,
         required String number,
-        required String Section,
+        required String desc,
         context
       }
       ){
@@ -101,7 +101,7 @@ class SignupAdminCubit extends Cubit<SignupAdminStates>{
                                                 name: name,
                                                 email: email,
                                                 number: number,
-                                                Section : Section,
+                                                desc : desc,
                                                 uId: value.user!.uid
                                             ),
                                             emit(CreateUserSuccessState(value.user!.uid))
@@ -152,7 +152,7 @@ class SignupAdminCubit extends Cubit<SignupAdminStates>{
     required String email,
     required String number,
     required String uId,
-    required String Section,
+    required String desc,
 
   }){
     emit(SignupLoadingState());
@@ -162,10 +162,10 @@ class SignupAdminCubit extends Cubit<SignupAdminStates>{
         email,
         number,
         uId,
-        Section
+        desc
     );
     FirebaseFirestore.instance
-        .collection('Admin')
+        .collection('users')
         .doc(uId)
         .set(admin.toMap()).then(
             (value) => {

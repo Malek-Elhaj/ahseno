@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:meta/meta.dart';
 
 part 'sections_state.dart';
@@ -11,7 +12,7 @@ class SectionsCubit extends Cubit<SectionsState> {
 
   Future getInprogress() async{
     inprogress.clear();
-    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo:"0").get().then((event) {
+    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo:"0").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
       for (var doc in event.docs) {
         inprogress.add(doc.data());
         print(" ${inprogress[0]}");
@@ -23,7 +24,7 @@ class SectionsCubit extends Cubit<SectionsState> {
   Future getRejected() async{
     rejected.clear();
 
-    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo:"1").get().then((event) {
+    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo:"1").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
       for (var doc in event.docs) {
         rejected.add(doc.data());
         print(" ${rejected[0]}");
@@ -48,9 +49,12 @@ class SectionsCubit extends Cubit<SectionsState> {
   }
   Future getProjects() async{
     second.clear();
+    Map<String, dynamic> data;
     await FirebaseFirestore.instance.collection("projects").orderBy('date', descending: true).get().then((event) {
       for (var doc in event.docs) {
-        second.add(doc.data());
+        data = doc.data();
+        data["id"]=doc.id;
+        second.add(data);
         print(" ${second[0]}");
       }
       emit(SectionsLoaded(first,second,last));
@@ -59,9 +63,12 @@ class SectionsCubit extends Cubit<SectionsState> {
   }
   Future getMadion() async{
     last.clear();
+    Map<String, dynamic> data;
     await FirebaseFirestore.instance.collection("madion").orderBy('date', descending: true).get().then((event) {
       for (var doc in event.docs) {
-        last.add(doc.data());
+        data = doc.data();
+        data["id"]=doc.id;
+        last.add(data);
         print(" ${last[0]}");
       }
       emit(SectionsLoaded(first,second,last));

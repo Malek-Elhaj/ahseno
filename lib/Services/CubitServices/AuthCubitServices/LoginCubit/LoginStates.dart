@@ -5,8 +5,8 @@ class IntialState extends LoginStates{}
 class ChangeVisiblity extends LoginStates{}
 
 class LoginSuccessState extends LoginStates{
-      final String uId;
-      LoginSuccessState(this.uId);
+      final String uId,desc;
+      LoginSuccessState(this.uId,this.desc);
 }
 
 class LoginFailedState extends LoginStates{
