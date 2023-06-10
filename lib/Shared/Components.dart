@@ -706,31 +706,35 @@ Widget bloodDonationCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              " الفصيلة -o",
+                             Text(
+                               "الفصيلة :    ${list![index]['type']}",
                               style: TextStyle(
                                   color: Colors.red,
-                                  fontSize: 16
+                                  fontSize: 18
                               ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on_outlined,
-                                  color: AppColors.CustomGrey,
-                                  size: 16,
-                                ),
-                                Text(
-                                  "${list![index]['name']}",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: AppColors.CustomGrey,
-                                      fontWeight: FontWeight.bold
+
+                            Padding(
+                              padding: const EdgeInsets.only(top:14.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on_outlined,
+                                    color: AppColors.CustomGrey,
+                                    size: 18,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    "${list![index]['name']}",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.CustomGrey,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            const SizedBox(height: 10,),
+                            const SizedBox(height:8,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -738,14 +742,14 @@ Widget bloodDonationCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>
                                   children: [
                                     const SizedBox(height: 5,),
                                     Text(
-                                      "اجمالي الاحتياج",
+                                      " ",
                                       style: TextStyle(
                                           fontSize: 11,
                                           color: AppColors.CustomGrey
                                       ),
                                     ),
                                     Text(
-                                      "2 وحدة",
+                                      " ",
                                       style: TextStyle(
                                           color: AppColors.CustomGreen
                                       ),

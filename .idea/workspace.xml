@@ -9,10 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="10-6-edit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Shared/Components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Shared/Components.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +164,13 @@
       <option name="presentableId" value="LOCAL‎00006" />
       <updated>1686414775126</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL‎00007" summary="10-6-edit">
+      <created>1686415313632</created>
+      <option name="number" value="LOCAL‎00007" />
+      <option name="presentableId" value="LOCAL‎00007" />
+      <updated>1686415313632</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
