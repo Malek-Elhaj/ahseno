@@ -4,14 +4,14 @@ class AdminModel {
   late String email;
   late String phone;
   late String uId;
-  late String Section;
+  late String desc;
 
   AdminModel(
       this.name,
       this.email,
       this.phone,
       this.uId,
-      this.Section
+      this.desc
       );
 
 
@@ -21,7 +21,7 @@ class AdminModel {
     email=json!["email"]!;
     phone=json!["phone"]!;
     uId=json!["uId"]!;
-    Section=json!["Section"]!;
+    desc=json!["desc"]!;
   }
 
   Map<String,dynamic> toMap(){
@@ -30,7 +30,7 @@ class AdminModel {
       'email':email,
       'phone':phone,
       'uId':uId,
-      'Section':Section
+      'desc':desc
 
     };
   }

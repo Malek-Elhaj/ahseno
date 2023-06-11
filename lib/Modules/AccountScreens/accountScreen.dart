@@ -60,7 +60,7 @@ class _AccountScreenState extends State<AccountScreen> {
               buttonfunction: uId != null ? (){
                 NavgatetoPage(context: context, page: const SettingsScreen());
               } : (){
-                showInfoToast(". قوم بتسجيل الدخول للحصول على صلاحيات ", context);
+                showInfoToast(". قم بتسجيل الدخول للحصول على صلاحيات ", context);
               }
           ),
           body: SingleChildScrollView(

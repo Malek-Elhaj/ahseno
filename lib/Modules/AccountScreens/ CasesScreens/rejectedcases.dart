@@ -18,7 +18,7 @@ class _RejectedCasesScreenState extends State<RejectedCasesScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<SectionsCubit>(context).getInprogress();
+    BlocProvider.of<SectionsCubit>(context).getRejected();
   }
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,12 @@ class _RejectedCasesScreenState extends State<RejectedCasesScreen> {
         appBar: defaultAppBar(title: "الحالات المرفوضة", context: context),
         body: BlocBuilder<SectionsCubit, SectionsState>(
   builder: (context, state) {
-    if(state is CasesLoaded && rejected.length>0) {
+    if(state is CasesLoaded && (state).rejected.length>0) {
+
+      this.rejected.clear();
+
       rejected = (state).rejected;
+      print(rejected);
       return ListView.separated(
           itemBuilder: (context, index) =>
               differentcaseCard(
@@ -55,7 +59,7 @@ class _RejectedCasesScreenState extends State<RejectedCasesScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "سبب رفض الحالة الخاصة بك لانه المسجد غير مسجل في اوقافسبب رفض الحالة الخاصة بك لانه المسجد غير مسجل في اوقافسبب رفض الحالة الخاصة بك لانه المسجد غير مسجل في اوقافسبب رفض الحالة الخاصة بك لانه المسجد غير مسجل في اوقاف",
+                                      "${rejected[index]["reason"]}",
                                     style: TextStyle(
                                         color: AppColors.CustomGrey
                                     ),
@@ -66,13 +70,14 @@ class _RejectedCasesScreenState extends State<RejectedCasesScreen> {
                           )
                   );
                 },
-                bottomtitle: 'سبب رفض الحالة الخاصة بك لانه المسجد غير مسجل في اوقاف',
+                bottomtitle: "${rejected[index]["reason"]}",
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 10,),
           itemCount: rejected.length
       );
     }
     else{
+      //print(rejected);
       return Center(child: Text("لا توجد حالات مرفوضة"));
     }
   },

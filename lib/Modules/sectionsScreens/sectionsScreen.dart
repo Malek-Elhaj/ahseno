@@ -106,7 +106,7 @@ class _SectionsScreenState extends State<SectionsScreen> {
                           itemCount: first.length
                       );}
     else{
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
   },
 ),
@@ -138,7 +138,7 @@ class _SectionsScreenState extends State<SectionsScreen> {
                             itemCount: second.length
                         );}
                       else{
-                        return CircularProgressIndicator();
+                        return Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
@@ -170,7 +170,7 @@ class _SectionsScreenState extends State<SectionsScreen> {
                             itemCount: last.length
                         );}
                       else{
-                        return CircularProgressIndicator();
+                        return Center(child: CircularProgressIndicator());
                       }
                     },
                   ),

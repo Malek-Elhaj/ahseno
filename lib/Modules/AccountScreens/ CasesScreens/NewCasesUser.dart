@@ -20,7 +20,7 @@ class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<SectionsCubit>(context).getAll();
+    BlocProvider.of<SectionsCubit>(context).getMyCases();
   }
 
   @override
@@ -61,103 +61,106 @@ class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
 
     return BlocBuilder<SectionsCubit, SectionsState>(
       builder: (context, state) {
-        if(state is SectionsLoaded){
+        if(state is MyCasesLoaded) {
           myCases.clear();
-          myCases+= state.first;
-          myCases+= state.second;
-          myCases+= state.last;
-        }
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            appBar: defaultAppBar(title: "الحالات المضافة", context: context),
-            body: ListView.separated(
-                itemBuilder: (context, index) =>
-                    defaultCardItem(
-                        image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
-                        itemTitle: "${myCases[index]["title"]}",
-                        leftnumber: "${myCases[index]["req"]}",
-                        textButton1: "تقديم طلب تعديل",
-                        textButton2: "تقديم طلب حذف",
-                        buttonColor: "#13678A",
-                        buttonColor2: "#ff5c33",
-                        percent: 0.0,
-                        percentvalue: "30",
-                        percentcolor: "#45C4B0",
-                        function: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) =>
-                                  Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: SizedBox(
-                                      height: 250,
-                                      width: double.infinity,
-                                      child: Form(
+          myCases += state.myCases;
 
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(height: 15,),
-                                            Text(
-                                              "طلب التعديل",
-                                              style: TextStyle(
-                                                  color: AppColors.CustomGrey,
-                                                  fontSize: 18
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: Scaffold(
+              appBar: defaultAppBar(title: "الحالات المضافة", context: context),
+              body: ListView.separated(
+                  itemBuilder: (context, index) =>
+                      defaultCardItem(
+                          image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
+                          itemTitle: "${myCases[index]["title"]}",
+                          leftnumber: "${myCases[index]["req"]}",
+                          textButton1: "تقديم طلب تعديل",
+                          textButton2: "تقديم طلب حذف",
+                          buttonColor: "#13678A",
+                          buttonColor2: "#ff5c33",
+                          percent: 0.0,
+                          percentvalue: "30",
+                          percentcolor: "#45C4B0",
+                          function: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) =>
+                                    Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: SizedBox(
+                                        height: 250,
+                                        width: double.infinity,
+                                        child: Form(
+
+                                          child: Column(
+                                            children: [
+                                              const SizedBox(height: 15,),
+                                              Text(
+                                                "طلب التعديل",
+                                                style: TextStyle(
+                                                    color: AppColors.CustomGrey,
+                                                    fontSize: 18
+                                                ),
                                               ),
-                                            ),
-                                            DefaultTextField(
-                                                label: "أكتب الشي المراد تعديله",
-                                                textcontroller: rejectionController,
-                                                function: (value) {
-                                                  if (value!.isEmpty) {
-                                                    return "رجاء ادخال سبب التعديل";
+                                              DefaultTextField(
+                                                  label: "أكتب الشي المراد تعديله",
+                                                  textcontroller: rejectionController,
+                                                  function: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "رجاء ادخال سبب التعديل";
+                                                    }
                                                   }
-                                                }
-                                            ),
-                                            const SizedBox(height: 10,),
-                                            DefaultButton(
-                                                Function: () {
+                                              ),
+                                              const SizedBox(height: 10,),
+                                              DefaultButton(
+                                                  Function: () {
 
-                                                },
-                                                ButtonText: "انهاء العملية"
-                                            )
-                                          ],
+                                                  },
+                                                  ButtonText: "انهاء العملية"
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                              shape: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(16)),
-                                  borderSide: BorderSide(color: Colors
-                                      .transparent)
-                              )
-                          );
-                        },
-                        function2: () {
-                          if (true) {
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBarDone);
-                          } else {
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBarFailed);
-                          }
-                        },
-                        ontab: () {
-                          // NavgatetoPage(context: context, page: const DescribtionScreen());
-                        },
-                        onlongpress: () {
+                                shape: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(16)),
+                                    borderSide: BorderSide(color: Colors
+                                        .transparent)
+                                )
+                            );
+                          },
+                          function2: () {
+                            if (true) {
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(snackBarDone);
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(snackBarFailed);
+                            }
+                          },
+                          ontab: () {
+                            // NavgatetoPage(context: context, page: const DescribtionScreen());
+                          },
+                          onlongpress: () {
 
-                        }
-                    ),
-                separatorBuilder: (context, index) =>
-                const SizedBox(height: 10,),
-                itemCount: myCases.length
+                          }
+                      ),
+                  separatorBuilder: (context, index) =>
+                  const SizedBox(height: 10,),
+                  itemCount: myCases.length
+              ),
             ),
-          ),
-        );
+          );
+        }
+        else
+          {
+            return Center(child: Text("لا توجد حالات مضافة"));
+          }
       },
     );
   }

@@ -368,6 +368,7 @@ class _MainScreenState extends State<MainScreen> {
                        builder:(context,state){
 
                          if(state is BloodLooded){
+                           blood.clear();
                            blood = (state).lastBlood;
                            return bloodDonationCard(Scroll: Axis.horizontal,list: blood);
                          }else

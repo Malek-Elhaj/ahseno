@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:designapp/Modules/sectionsScreens/describtionScreen.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/ManageCasesCubit/cases_cubit.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,7 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
         body: BlocBuilder<CasesCubit, CasesState>(
           builder: (context, state) {
     if(state is ManageCases && (state).requestes.length > 0) {
+      request.clear();
       request = (state).requestes;
       return ListView.separated(
           itemBuilder: (context, index) =>
@@ -104,6 +106,7 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
                     }
                   },
                   function2: () {
+                    var data = request[index];
                     showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
@@ -144,7 +147,20 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
                                           ),
                                           const SizedBox(height: 10,),
                                           DefaultButton(
-                                              Function: () {
+                                              Function: () async{
+                                                await FirebaseFirestore.instance.collection("cases").doc(data["id"]).set(
+                                                    {
+                                                      "title": data["title"],
+                                                      "description": data["description"],
+                                                      "req": data["req"],
+                                                      "mostafid": data["mostafid"],
+                                                      "location": data["location"],
+                                                      "date":data["date"],
+                                                      "status":1,
+                                                      "reason":rejectionController.text,
+                                                      "total":data["total"],
+                                                      "uId":data["uId"]
+                                                    });
                                                 if (formKey.currentState!
                                                     .validate()) {
                                                   Navigator.pop(context);

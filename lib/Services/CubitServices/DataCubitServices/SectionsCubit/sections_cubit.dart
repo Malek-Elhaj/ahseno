@@ -8,7 +8,7 @@ part 'sections_state.dart';
 class SectionsCubit extends Cubit<SectionsState> {
   SectionsCubit() : super(SectionsInitial());
 
-  List<Map<String, dynamic>> first=[],second=[],last=[],inprogress=[],rejected=[];
+  List<Map<String, dynamic>> first=[],second=[],last=[],inprogress=[],rejected=[],myCases=[];
 
   Future getInprogress() async{
     inprogress.clear();
@@ -23,8 +23,7 @@ class SectionsCubit extends Cubit<SectionsState> {
   }
   Future getRejected() async{
     rejected.clear();
-
-    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo:"1").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
+    await FirebaseFirestore.instance.collection("cases").where("status",isEqualTo: 1).where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
       for (var doc in event.docs) {
         rejected.add(doc.data());
         print(" ${rejected[0]}");
@@ -74,6 +73,36 @@ class SectionsCubit extends Cubit<SectionsState> {
       emit(SectionsLoaded(first,second,last));
     });
     return last;
+  }
+  Future getMyCases() async{
+    myCases.clear();
+    Map<String, dynamic> data;
+    await FirebaseFirestore.instance.collection("madion").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
+      for (var doc in event.docs) {
+        data = doc.data();
+        data["id"]=doc.id;
+        myCases.add(data);
+      }
+      //emit(SectionsLoaded(first,second,last));
+    });
+    await FirebaseFirestore.instance.collection("projects").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
+      for (var doc in event.docs) {
+        data = doc.data();
+        data["id"]=doc.id;
+        myCases.add(data);
+      }
+      //emit(SectionsLoaded(first,second,last));
+    });
+    await FirebaseFirestore.instance.collection("maona").where("uId",isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
+      for (var doc in event.docs) {
+        data = doc.data();
+        data["id"]=doc.id;
+        myCases.add(data);
+      }
+      //
+    });
+    emit(MyCasesLoaded(myCases));
+    return myCases;
   }
   void getAll(){
     getMaona();
