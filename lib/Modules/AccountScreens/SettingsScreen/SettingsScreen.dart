@@ -89,6 +89,7 @@ class SettingsScreen extends StatelessWidget {
                       DefaultButton(
                         Function: (){
                            cubit.signOut();
+
                         },
                         ButtonText: "تسجيل خروج",
                         hexColor: "#ff5c33",

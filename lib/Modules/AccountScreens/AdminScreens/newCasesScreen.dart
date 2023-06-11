@@ -89,7 +89,8 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
                         "location": request[index]["location"],
                         "req": (request[index]["req"])!.toDouble(),
                         "date":request[index]["date"],
-                        "total":request[index]["total"]
+                        "total":request[index]["total"],
+                        "uId":request[index]["uId"],
                       };
                       await FirebaseFirestore.instance.collection(request[index]["section"]).add(data);
                       await FirebaseFirestore.instance.collection("cases").doc(request[index]["id"]).delete();
@@ -97,7 +98,8 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
                         ..hideCurrentSnackBar()
                         ..showSnackBar(snackBarDone);
                       setState(() {
-                        BlocProvider.of<CasesCubit>(context).getRequestes();
+                        //BlocProvider.of<CasesCubit>(context).getRequestes();
+                        initState();
                       });
                     } else {
                       ScaffoldMessenger.of(context)

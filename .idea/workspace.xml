@@ -7,7 +7,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="10-6-edit">
+    <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="11-6-edit">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
@@ -15,14 +15,12 @@
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/NewCasesUser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/NewCasesUser.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/rejectedcases.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/rejectedcases.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/newCasesScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/newCasesScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/SettingsScreen/SettingsScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/SettingsScreen/SettingsScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/MainScreen/mainScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/MainScreen/mainScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/sectionsScreens/sectionsScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/sectionsScreens/sectionsScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/AuthCubitServices/LoginCubit/LoginCubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/AuthCubitServices/LoginCubit/LoginCubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/ManageCasesCubit/cases_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/ManageCasesCubit/cases_cubit.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/models/AdminModel/adminModel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/models/AdminModel/adminModel.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Shared/Cubit/cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Shared/Cubit/cubit.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +188,13 @@
       <option name="presentableId" value="LOCAL‎00008" />
       <updated>1686416024199</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎00009" summary="11-6-edit">
+      <created>1686496088805</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1686496088805</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,6 +225,7 @@
     <MESSAGE value="add" />
     <MESSAGE value="login and roles" />
     <MESSAGE value="10-6-edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="10-6-edit" />
+    <MESSAGE value="11-6-edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="11-6-edit" />
   </component>
 </project>

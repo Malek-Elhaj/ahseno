@@ -36,7 +36,9 @@ class _AccountScreenState extends State<AccountScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     BlocProvider.of<Cubit_Class>(context).getUserData();
+    uId = null;
     //cubit.getUserData();
     //model = BlocProvider.of<Cubit_Class>(context).user;
     //model =UserModel(CacheHelper.getData(key: "name"), CacheHelper.getData(key: "email"), CacheHelper.getData(key: "phone"), CacheHelper.getData(key: "uId"),CacheHelper.getData(key: "desc"));
@@ -46,8 +48,10 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<Cubit_Class,State_Class>(
       builder:(context,state){
-        if(state is DataSuccessState){
-          model = state.user;
+        if(state is DataSuccessState && (state.user.uId != null)){
+          //model = state.user;
+          uId = state.user.uId;
+          print(state.user.uId);
         }
         print( CacheHelper.getData(key: "desc"));
         print( "${model.desc} aa");
@@ -136,7 +140,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // Adimn of the sections
                 Visibility(
-                  visible: model.desc == "madion" || model.desc == "projects"|| model.desc == "maona" ,
+                  visible: (model.desc == "madion" || model.desc == "projects"|| model.desc == "maona") && model.desc != null ,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -393,7 +397,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // Account login
                 Visibility(
-                  visible:  model.desc == "user",
+                  visible:  model.desc == "user" ,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

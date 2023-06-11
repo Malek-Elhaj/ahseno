@@ -101,6 +101,7 @@ class SectionsCubit extends Cubit<SectionsState> {
       }
       //
     });
+    print(myCases);
     emit(MyCasesLoaded(myCases));
     return myCases;
   }

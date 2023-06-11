@@ -184,6 +184,7 @@ class Cubit_Class extends Cubit<State_Class> {
         // CacheHelper.saveData(key: "email", value: null);
         // CacheHelper.saveData(key: "uId", value: null);
         CacheHelper.destroy();
+        uId = null;
         // FirebaseAuth.instance.signOut().then(
         //         (value) {
         //            uId=null;

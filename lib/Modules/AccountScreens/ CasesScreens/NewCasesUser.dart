@@ -59,109 +59,107 @@ class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
     );
 
 
-    return BlocBuilder<SectionsCubit, SectionsState>(
-      builder: (context, state) {
-        if(state is MyCasesLoaded) {
-          myCases.clear();
-          myCases += state.myCases;
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: defaultAppBar(title: "الحالات المضافة", context: context),
+        body: BlocBuilder<SectionsCubit, SectionsState>(
+        builder: (context, state) {
+    if(state is MyCasesLoaded && state.myCases.length>0) {
+      myCases.clear();
+      myCases += state.myCases;
+      return ListView.separated(
+          itemBuilder: (context, index) =>
+              defaultCardItem(
+                  image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
+                  itemTitle: "${myCases[index]["title"]}",
+                  leftnumber: "${myCases[index]["req"]}",
+                  textButton1: "تقديم طلب تعديل",
+                  textButton2: "تقديم طلب حذف",
+                  buttonColor: "#13678A",
+                  buttonColor2: "#ff5c33",
+                  percent: 0.0,
+                  percentvalue: "30",
+                  percentcolor: "#45C4B0",
+                  function: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) =>
+                            Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: SizedBox(
+                                height: 250,
+                                width: double.infinity,
+                                child: Form(
 
-          return Directionality(
-            textDirection: TextDirection.rtl,
-            child: Scaffold(
-              appBar: defaultAppBar(title: "الحالات المضافة", context: context),
-              body: ListView.separated(
-                  itemBuilder: (context, index) =>
-                      defaultCardItem(
-                          image: "Assets/images/SliderImages/muslims-reading-from-quran.jpg",
-                          itemTitle: "${myCases[index]["title"]}",
-                          leftnumber: "${myCases[index]["req"]}",
-                          textButton1: "تقديم طلب تعديل",
-                          textButton2: "تقديم طلب حذف",
-                          buttonColor: "#13678A",
-                          buttonColor2: "#ff5c33",
-                          percent: 0.0,
-                          percentvalue: "30",
-                          percentcolor: "#45C4B0",
-                          function: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) =>
-                                    Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: SizedBox(
-                                        height: 250,
-                                        width: double.infinity,
-                                        child: Form(
-
-                                          child: Column(
-                                            children: [
-                                              const SizedBox(height: 15,),
-                                              Text(
-                                                "طلب التعديل",
-                                                style: TextStyle(
-                                                    color: AppColors.CustomGrey,
-                                                    fontSize: 18
-                                                ),
-                                              ),
-                                              DefaultTextField(
-                                                  label: "أكتب الشي المراد تعديله",
-                                                  textcontroller: rejectionController,
-                                                  function: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return "رجاء ادخال سبب التعديل";
-                                                    }
-                                                  }
-                                              ),
-                                              const SizedBox(height: 10,),
-                                              DefaultButton(
-                                                  Function: () {
-
-                                                  },
-                                                  ButtonText: "انهاء العملية"
-                                              )
-                                            ],
-                                          ),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(height: 15,),
+                                      Text(
+                                        "طلب التعديل",
+                                        style: TextStyle(
+                                            color: AppColors.CustomGrey,
+                                            fontSize: 18
                                         ),
                                       ),
-                                    ),
-                                shape: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(16)),
-                                    borderSide: BorderSide(color: Colors
-                                        .transparent)
-                                )
-                            );
-                          },
-                          function2: () {
-                            if (true) {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(snackBarDone);
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(snackBarFailed);
-                            }
-                          },
-                          ontab: () {
-                            // NavgatetoPage(context: context, page: const DescribtionScreen());
-                          },
-                          onlongpress: () {
+                                      DefaultTextField(
+                                          label: "أكتب الشي المراد تعديله",
+                                          textcontroller: rejectionController,
+                                          function: (value) {
+                                            if (value!.isEmpty) {
+                                              return "رجاء ادخال سبب التعديل";
+                                            }
+                                          }
+                                      ),
+                                      const SizedBox(height: 10,),
+                                      DefaultButton(
+                                          Function: () {
 
-                          }
-                      ),
-                  separatorBuilder: (context, index) =>
-                  const SizedBox(height: 10,),
-                  itemCount: myCases.length
+                                          },
+                                          ButtonText: "انهاء العملية"
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                        shape: const OutlineInputBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16)),
+                            borderSide: BorderSide(color: Colors
+                                .transparent)
+                        )
+                    );
+                  },
+                  function2: () {
+                    if (true) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBarDone);
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBarFailed);
+                    }
+                  },
+                  ontab: () {
+                    // NavgatetoPage(context: context, page: const DescribtionScreen());
+                  },
+                  onlongpress: () {
+
+                  }
               ),
-            ),
-          );
-        }
-        else
-          {
-            return Center(child: Text("لا توجد حالات مضافة"));
-          }
-      },
+          separatorBuilder: (context, index) =>
+          const SizedBox(height: 10,),
+          itemCount: myCases.length
+      );
+    }
+    else{
+      return Center(child: Text("لا توجد حالات مضافة"));
+    }
+          },
+        ),
+      ),
     );
   }
 }
