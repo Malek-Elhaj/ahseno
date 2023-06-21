@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:designapp/Modules/ShopCart/shopCartScreen.dart';
+import 'package:designapp/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart';
 import 'package:designapp/Shared/Cubit/cubit.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -724,7 +727,7 @@ Widget bloodDonationCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>
                                     size: 18,
                                   ),
                                   Text(
-                                    "${list![index]['name']}",
+                                    "${list![index]['location']}",
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: AppColors.CustomGrey,
@@ -758,7 +761,7 @@ Widget bloodDonationCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>
                                 ),
                                 DefaultButton(
                                     Function: ()  {
-                                      _lan(list![index]['no']);
+                                      _lan(list![index]['phone']);
                                     },
                                     ButtonText: "اتصل بنا",
                                     minWidth: 100
@@ -780,7 +783,119 @@ Widget bloodDonationCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>
       itemCount: list!.length
   );
 }
+Widget myBloodCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>>? list}){
+  return  ListView.separated(
+      scrollDirection: Scroll,
+      itemBuilder: (context,index)=> Container(
+          height: 250,
+          width: 400,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                            color: AppColors.CustomGrey,
+                            blurRadius: 4,
+                            blurStyle: BlurStyle.outer
+                        )
+                      ]
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 30,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(16),topRight: Radius.circular(16)),
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "الفصيلة :    ${list![index]['type']}",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18
+                              ),
+                            ),
 
+                            Padding(
+                              padding: const EdgeInsets.only(top:14.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on_outlined,
+                                    color: AppColors.CustomGrey,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                    "${list![index]['location']}",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.CustomGrey,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height:8,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    const SizedBox(height: 5,),
+                                    Text(
+                                      " ",
+                                      style: TextStyle(
+                                          fontSize: 11,
+                                          color: AppColors.CustomGrey
+                                      ),
+                                    ),
+                                    Text(
+                                      " ",
+                                      style: TextStyle(
+                                          color: AppColors.CustomGreen
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                DefaultButton(
+                                    Function: ()  async{
+                                     await FirebaseFirestore.instance.collection("blood").doc(list[index]["id"]).delete();
+                                     BlocProvider.of<BloodCubit>(context).getMyBlood();
+                                    },
+                                    ButtonText: "حذف",
+                                    minWidth: 70
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )
+      ),
+      separatorBuilder: (context,index)=> const SizedBox(width: 10,),
+      itemCount: list!.length
+  );
+}
 PreferredSizeWidget defaultAppBar(
       {
         required String title,

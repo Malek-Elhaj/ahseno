@@ -1,6 +1,8 @@
 import 'package:designapp/Modules/AccountScreens/%20CasesScreens/NewCasesUser.dart';
 import 'package:designapp/Modules/AccountScreens/%20CasesScreens/casesInprocess.dart';
 import 'package:designapp/Modules/AccountScreens/%20CasesScreens/createCaseScreen.dart';
+import 'package:designapp/Modules/AccountScreens/%20CasesScreens/bloodCaseScreen.dart';
+import 'package:designapp/Modules/AccountScreens/%20CasesScreens/manageBloodCases.dart';
 import 'package:designapp/Modules/AccountScreens/%20CasesScreens/rejectedcases.dart';
 import 'package:designapp/Modules/AccountScreens/AboutApp/appInfoScreen.dart';
 import 'package:designapp/Modules/AccountScreens/AboutApp/feedBackScreen.dart';
@@ -139,20 +141,25 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
 
                 // Adimn of the sections
-                Visibility(
-                  visible: (model.desc == "madion" || model.desc == "projects"|| model.desc == "maona") && model.desc != null ,
-                  child: Column(
+
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          "أدارة الحالات",
-                          style: TextStyle(
-                              color: AppColors.CustomGreen
-                          ),
-                        ),
-                      ),
+                      Visibility(
+                        visible: (model.desc == "madion" || model.desc == "projects"|| model.desc == "maona"),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                "ادارة الحالات",
+                                style: TextStyle(
+                                    color: AppColors.CustomGreen
+                                ),
+                              ),
+                            ),
+
+
                       const SizedBox(height: 10,),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -265,16 +272,24 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
+                          ],
+                ),
+          ),
+                      Visibility(
+                        visible: (model.desc == "admin" ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                "إدارة النظام",
+                                style: TextStyle(
+                                    color: AppColors.CustomGreen
+                                ),
+                              ),
+                            ),
 
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          "إدارة النظام",
-                          style: TextStyle(
-                              color: AppColors.CustomGreen
-                          ),
-                        ),
-                      ),
+
 
                       const SizedBox(height: 10,),
 
@@ -390,10 +405,13 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
+                          ],
+                        ),
+                      ),
 
                     ],
                   ),
-                ),
+
 
                 // Account login
                 Visibility(
@@ -434,7 +452,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
                                   child: ListTile(
                                     leading: Text(
-                                      " أنشاء حالة تبرع",
+                                      " انشاء حالة تبرع",
                                       style: TextStyle(
                                           color: AppColors.CustomGrey
                                       ),
@@ -448,6 +466,48 @@ class _AccountScreenState extends State<AccountScreen> {
                                     ),
                                     onTap: (){
                                       NavgatetoPage(context: context, page: const CreateCaseScreen());
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                                  child: ListTile(
+                                    leading: Text(
+                                      "اضافة حالات التبرع بالدم",
+                                      style: TextStyle(
+                                          color: AppColors.CustomGrey
+                                      ),
+                                    ),
+                                    trailing:  Icon(
+                                      Icons.arrow_circle_left_outlined,
+                                      color: AppColors.CustomBlue,
+                                    ),
+                                    shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    onTap: (){
+                                      NavgatetoPage(context: context, page: const bloodCaseScreen() );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20),
+                                  child: ListTile(
+                                    leading: Text(
+                                      "حالات التبرع بالدم",
+                                      style: TextStyle(
+                                          color: AppColors.CustomGrey
+                                      ),
+                                    ),
+                                    trailing:  Icon(
+                                      Icons.arrow_circle_left_outlined,
+                                      color: AppColors.CustomBlue,
+                                    ),
+                                    shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    onTap: (){
+                                      NavgatetoPage(context: context, page: const ManageBloodCases() );
                                     },
                                   ),
                                 ),

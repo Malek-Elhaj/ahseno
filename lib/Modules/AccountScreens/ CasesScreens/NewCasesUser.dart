@@ -1,6 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:designapp/Modules/sectionsScreens/describtionScreen.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +84,7 @@ class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
                   percentvalue: "30",
                   percentcolor: "#45C4B0",
                   function: () {
+
                     showModalBottomSheet(
                         context: context,
                         builder: (context) =>
@@ -113,8 +116,9 @@ class _NewCasesUserScreenState extends State<NewCasesUserScreen> {
                                       ),
                                       const SizedBox(height: 10,),
                                       DefaultButton(
-                                          Function: () {
-
+                                          Function: () async{
+                                            await FirebaseFirestore.instance.collection("${myCases[index]["section"]}").doc("${myCases[index]["id"]}").update({"request": "1","reason":rejectionController.text}).then((value)=> print("DocumentSnapshot successfully updated!"),
+                                                onError: (e) => print("Error updating document $e"));
                                           },
                                           ButtonText: "انهاء العملية"
                                       )

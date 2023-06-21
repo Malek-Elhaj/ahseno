@@ -13,6 +13,11 @@ class MyCasesLoaded extends SectionsState{
   List<Map<String, dynamic>> myCases;
   MyCasesLoaded(this.myCases);
 }
+class RequestsLoaded extends SectionsState{
+  List<Map<String, dynamic>> requests;
+  RequestsLoaded(this.requests);
+}
+
 class CasesLoaded extends SectionsState{
   List<Map<String, dynamic>> inprogress,rejected;
   CasesLoaded(this.inprogress,this.rejected);

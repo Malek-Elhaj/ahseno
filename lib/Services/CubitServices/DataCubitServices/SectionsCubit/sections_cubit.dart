@@ -8,7 +8,7 @@ part 'sections_state.dart';
 class SectionsCubit extends Cubit<SectionsState> {
   SectionsCubit() : super(SectionsInitial());
 
-  List<Map<String, dynamic>> first=[],second=[],last=[],inprogress=[],rejected=[],myCases=[];
+  List<Map<String, dynamic>> first=[],second=[],last=[],inprogress=[],rejected=[],myCases=[],requests=[];
 
   Future getInprogress() async{
     inprogress.clear();
@@ -104,6 +104,19 @@ class SectionsCubit extends Cubit<SectionsState> {
     print(myCases);
     emit(MyCasesLoaded(myCases));
     return myCases;
+  }
+  Future getRequests() async{
+    requests.clear();
+    Map<String, dynamic> data;
+    await FirebaseFirestore.instance.collection(CacheHelper.getData(key: "desc")).where("request",isNotEqualTo: "0").get().then((event) {
+      for (var doc in event.docs) {
+        data = doc.data();
+        data["id"]=doc.id;
+        requests.add(data);
+      }
+      emit(RequestsLoaded(requests));
+    });
+    return requests;
   }
   void getAll(){
     getMaona();

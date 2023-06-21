@@ -175,6 +175,7 @@ class _ManagingCasesScreenState extends State<ManagingCasesScreen> {
                                                       "location": data["location"],
                                                       "date":data["date"],
                                                       "total":data["total"],
+                                                      "section": data["section"],
                                                       "uId":data["uId"]
                                                     });
                                                 if (formKey.currentState!

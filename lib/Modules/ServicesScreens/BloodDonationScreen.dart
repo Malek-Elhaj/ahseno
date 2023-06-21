@@ -55,9 +55,6 @@ class _BloodDonationScreenState extends State<BloodDonationScreen> {
                       Tab(
                         text: 'محتاجين الدم',
                       ),
-                     // Tab(
-                     //   text: 'اماكن التبرع',
-                    //  ),
                     ]
                 ),
               ),

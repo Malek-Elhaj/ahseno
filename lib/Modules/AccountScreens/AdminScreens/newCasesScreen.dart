@@ -89,6 +89,7 @@ class _NewCasesScreenState extends State<NewCasesScreen> {
                         "location": request[index]["location"],
                         "req": (request[index]["req"])!.toDouble(),
                         "date":request[index]["date"],
+                        "section": request[index]["section"],
                         "total":request[index]["total"],
                         "uId":request[index]["uId"],
                       };
