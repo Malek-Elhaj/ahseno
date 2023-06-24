@@ -43,6 +43,7 @@ class BloodCubit extends Cubit<BloodState> {
     myBlood.clear();
     Map<String, dynamic> data;
     await FirebaseFirestore.instance.collection("blood").where("uId" ,isEqualTo:CacheHelper.getData(key: "uId")).get().then((event) {
+
       for (var doc in event.docs) {
         data = doc.data();
         data["id"]=doc.id;
@@ -50,6 +51,6 @@ class BloodCubit extends Cubit<BloodState> {
       }
       emit(myBloodLooded(myBlood));
     });
-    return blood;
+    return myBlood;
   }
 }

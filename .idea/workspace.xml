@@ -7,25 +7,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="11 6 Edit">
-      <change afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/bloodCaseScreen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/manageBloodCases.dart" afterDir="false" />
+    <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="Edit">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/NewCasesUser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/NewCasesUser.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/edit&amp;deleteScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/edit&amp;deleteScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/managingCases.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/managingCases.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/newCasesScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/AdminScreens/newCasesScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/accountScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/ServicesScreens/BloodDonationScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/ServicesScreens/BloodDonationScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/manageBloodCases.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/manageBloodCases.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/SectionsCubit/sections_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Shared/Components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Shared/Components.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -210,7 +197,13 @@
       <option name="presentableId" value="LOCAL‎00010" />
       <updated>1686503259822</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎00011" summary="Edit">
+      <created>1687307917320</created>
+      <option name="number" value="LOCAL‎00011" />
+      <option name="presentableId" value="LOCAL‎00011" />
+      <updated>1687307917320</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +236,7 @@
     <MESSAGE value="10-6-edit" />
     <MESSAGE value="11-6-edit" />
     <MESSAGE value="11 6 Edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="11 6 Edit" />
+    <MESSAGE value="Edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit" />
   </component>
 </project>

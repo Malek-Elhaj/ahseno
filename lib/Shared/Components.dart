@@ -875,7 +875,7 @@ Widget myBloodCard ({Axis Scroll = Axis.vertical,List<Map<String, dynamic>>? lis
                                 DefaultButton(
                                     Function: ()  async{
                                      await FirebaseFirestore.instance.collection("blood").doc(list[index]["id"]).delete();
-                                     BlocProvider.of<BloodCubit>(context).getMyBlood();
+                                     //BlocProvider.of<BloodCubit>(context).getMyBlood();
                                     },
                                     ButtonText: "حذف",
                                     minWidth: 70

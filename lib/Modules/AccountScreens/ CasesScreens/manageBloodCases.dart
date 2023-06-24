@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart';
+import 'package:designapp/Shared/CacheHelper.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Style.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,16 @@ class ManageBloodCases extends StatefulWidget {
   @override
   State<ManageBloodCases> createState() => _ManageBloodCasesState();
 }
-List<Map<String, dynamic>> blood=[];
-class _ManageBloodCasesState extends State<ManageBloodCases> {
 
+class _ManageBloodCasesState extends State<ManageBloodCases> {
+  List<Map<String, dynamic>> blood=[];
   @override
   void initState() {
-    super.initState();
     BlocProvider.of<BloodCubit>(context).getMyBlood();
+  print(BlocProvider.of<BloodCubit>(context).myBlood);
+  print(CacheHelper.getData(key: "uId"));
+    super.initState();
+
   }
 
   @override
@@ -66,7 +70,7 @@ class _ManageBloodCasesState extends State<ManageBloodCases> {
                         return BlocBuilder<BloodCubit,BloodState>(
                           builder:(context,state){
                             //blood.clear();
-                            if(state is myBloodLooded){
+                            if(state is myBloodLooded && state.myBlood.length > 0){
                               blood.clear();
                               blood = (state).myBlood;
                               return myBloodCard(list: blood);
