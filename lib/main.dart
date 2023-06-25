@@ -4,6 +4,7 @@ import 'package:designapp/Modules/AuthFiles/Login_Design.dart';
 import 'package:designapp/Modules/OnBoarding/onboardingscreen.dart';
 import 'package:designapp/Services/CubitServices/AuthCubitServices/LoginCubit/LoginCubit.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart';
+import 'package:designapp/Services/CubitServices/DataCubitServices/CartCubit/cart_cubit.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/ManageCasesCubit/cases_cubit.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart';
 import 'package:designapp/Shared/CacheHelper.dart';
@@ -58,6 +59,7 @@ class Myapp extends StatelessWidget{
           BlocProvider(create: (BuildContext context)=> BloodCubit()),
           BlocProvider(create: (BuildContext context)=> SectionsCubit()),
           BlocProvider(create: (BuildContext context)=> CasesCubit()),
+          BlocProvider(create: (BuildContext context)=> CartCubit()),
         ],
         child: BlocConsumer<Cubit_Class,State_Class>(
           listener: (context,index){},

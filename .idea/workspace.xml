@@ -8,12 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfe31210-a411-485b-8cef-678604619d6b" name="Changes" comment="Edit">
+      <change afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/CartCubit/cart_cubit.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/CartCubit/cart_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Services/models/CartCaseModel/CartCase.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/f58ed05f7a6fba8f3451773989665e4b.cache.dill.track.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/manageBloodCases.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/AccountScreens/ CasesScreens/manageBloodCases.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/CubitServices/DataCubitServices/BloodCubit/blood_cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Shared/Components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Shared/Components.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Modules/ShopCart/shopCartScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/ShopCart/shopCartScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Modules/sectionsScreens/sectionsScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/sectionsScreens/sectionsScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +209,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1687307917320</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="Edit">
+      <created>1687628865749</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1687628865749</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

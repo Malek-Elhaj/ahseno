@@ -1,6 +1,8 @@
 import 'package:designapp/Modules/ShopCart/shopCartScreen.dart';
 import 'package:designapp/Modules/sectionsScreens/describtionScreen.dart';
+import 'package:designapp/Services/CubitServices/DataCubitServices/CartCubit/cart_cubit.dart';
 import 'package:designapp/Services/CubitServices/DataCubitServices/SectionsCubit/sections_cubit.dart';
+import 'package:designapp/Services/models/CartCaseModel/CartCase.dart';
 import 'package:designapp/Shared/Components.dart';
 import 'package:designapp/Shared/Cubit/cubit.dart';
 import 'package:designapp/Shared/Style.dart';
@@ -20,10 +22,14 @@ class SectionsScreen extends StatefulWidget {
 
 class _SectionsScreenState extends State<SectionsScreen> {
   List<Map<String, dynamic>> first=[],second=[],last=[];
+  List<Map<String, dynamic>> items=[];
+  Map<String, dynamic> item=Map();
+  //CartCase item=CartCase("", "", "", "");
   @override
   void initState() {
     // TODO: implement initState
     BlocProvider.of<SectionsCubit>(context).getAll();
+    items = BlocProvider.of<CartCubit>(context).items;
   }
   @override
   Widget build(BuildContext context) {
@@ -94,6 +100,12 @@ class _SectionsScreenState extends State<SectionsScreen> {
                                  DefaultPaymentBottomSheet(context);
                                 },
                               function2: (){
+                                item['id']=first[index]["id"];
+                                item['title']=first[index]["title"];
+                                item['stay']=(first[index]["req"]-first[index]["total"]).toString();
+                                item['section']=first[index]["section"];
+                                //item=CartCase(first[index]["id"], first[index]["title"], (first[index]["req"]-first[index]["total"]).toString(), first[index]["section"]);
+                                BlocProvider.of<CartCubit>(context).addItem(item);
                               },
                               ontab: () {
                                 NavgatetoPage(context: context, page: DescribtionScreen(list:first[index]));
@@ -126,6 +138,12 @@ class _SectionsScreenState extends State<SectionsScreen> {
                                   DefaultPaymentBottomSheet(context);
                                 },
                                 function2: (){
+                                  item['id']=second[index]["id"];
+                                  item['title']=second[index]["title"];
+                                  item['stay']=(second[index]["req"]-second[index]["total"]).toString();
+                                  item['section']=second[index]["section"];
+                                 // item=CartCase(second[index]["id"], second[index]["title"], (second[index]["req"]-second[index]["total"]).toString(), second[index]["section"]);
+                                  BlocProvider.of<CartCubit>(context).addItem(item);
                                 },
                                 ontab: () {
                                   NavgatetoPage(context: context, page: DescribtionScreen(list:second[index]));
@@ -158,6 +176,12 @@ class _SectionsScreenState extends State<SectionsScreen> {
                                   DefaultPaymentBottomSheet(context);
                                 },
                                 function2: (){
+                                  item['id']=last[index]["id"];
+                                  item['title']=last[index]["title"];
+                                  item['stay']=(last[index]["req"]-last[index]["total"]).toString();
+                                  item['section']=last[index]["section"];
+                                  //item=CartCase(last[index]["id"], last[index]["title"], (last[index]["req"]-last[index]["total"]).toString(), last[index]["section"]);
+                                  BlocProvider.of<CartCubit>(context).addItem(item);
                                 },
                                 ontab: () {
                                   NavgatetoPage(context: context, page: DescribtionScreen(list:last[index]));
